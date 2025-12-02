@@ -3,13 +3,15 @@
 import { Glob } from 'bun';
 import chalk from 'chalk';
 
-const glob = new Glob('challenges/**/index.ts');
+const year = new Date().getFullYear();
+
+const glob = new Glob(`challenges/${year}/**/index.ts`);
 
 const files = await Array.fromAsync(glob.scan('.'));
 
 const mostRecentFile = files.sort((a, b) => {
-    const aNumber = /(\d{1,2})/.exec(a)![1];
-    const bNumber = /(\d{1,2})/.exec(b)![1];
+    const aNumber = /\d{4}\/(\d{1,2})/.exec(a)![1];
+    const bNumber = /\d{4}\/(\d{1,2})/.exec(b)![1];
 
     return Number(bNumber) - Number(aNumber);
 })[0];
@@ -20,7 +22,7 @@ console.log(`${snowflake} ${chalk.green('Happy')} ${chalk.red('Holidays!')} ${sn
 
 console.log(
     chalk.green(
-        `\nThe most recent challenge with data is the challenge for day ${chalk.yellow(/challenges\/(\d{1,2})/.exec(mostRecentFile)![1])}. Here are the results:\n`,
+        `\nThe most recent ${year} challenge with data is the challenge for day ${chalk.yellow(/\d{4}\/(\d{1,2})/.exec(mostRecentFile)![1])}. Here are the results:\n`,
     ),
 );
 

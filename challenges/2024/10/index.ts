@@ -61,10 +61,7 @@ for (const trailhead of trailheads) partTwoTrailheadScoreSum += partTwoGetScoreF
 function partTwoGetScoreFromPoint(point: [number, number], value: number, currentPath?: Set<string>) {
     let score = 0;
 
-    if (!currentPath) {
-        currentPath = new Set<string>();
-        currentPath.add(point.toString());
-    }
+    currentPath ??= new Set([point.toString()]);
 
     for (const direction of directions) {
         const newPointLocation: [number, number] = [point[0] + direction[0], point[1] + direction[1]];

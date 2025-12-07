@@ -1,3 +1,3 @@
-# 2024-advent-of-code
+# advent-of-code
 
-This repository contains work on the [2024 Advent of Code](https://adventofcode.com/2024).
+This repository contains work on the [Advent of Code](https://adventofcode.com).
